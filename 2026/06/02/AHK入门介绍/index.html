@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="使用了多屏扩展，重启后桌面图标总乱排 - Frieren"><meta name="theme-color" content="#46b3e6"><title>使用了多屏扩展，重启后桌面图标总乱排 - Frieren</title><style>@font-face {
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="AHK入门介绍 - Frieren"><meta name="theme-color" content="#46b3e6"><title>AHK入门介绍 - Frieren</title><style>@font-face {
   font-family: 'Abril Fatface';
   font-style: normal;
   font-weight: 400;
@@ -28,75 +28,114 @@ gtag('config', 'xx-xxxxxxx-xx');</script><link rel="stylesheet" href="/css/tocbo
     orderedList: false,
     collapseDepth: 2,
   });
-})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="mask-border"></div><!--.head--><!--  .head__inner--><!--    h1--><!--      a(href=theme.menu.Home) #{config.title}--><!--    p #{config.description}--><div class="head"><div class="head__inner"><h1><a href="/">Frieren <!-- 修改了这行的href --></a></h1><!-- 以下是新增的行，用于显示更多信息 --><p>May thy blade remain ever sharp</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">使用了多屏扩展，重启后桌面图标总乱排</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">使用了多屏扩展，重启后桌面图标总乱排</a></h2><span class="post__date">2026-04-04</span></div></div><div class="article__content"><p>我给我的笔记本电脑安装了一个外接显示器，平时一起使用两个屏幕。外接显示器作为我的主显示器，桌面图标基本放在这个显示器上。有段时间我回老家，只带了电脑本身回去。由于笔记本电脑的屏幕比较小，所以设置的是125%的分辨率。而外接显示器的屏幕比较大，所以是100%的分辨率。也许正是因为分辨率的不同，所以回老家后开机，本应该按原样显示在屏幕上的桌面图标转到我的小屏幕上顺序就会变乱。由于我回老家只回一周，所以我没有修正排布，以为回自己家接上外接显示器就会恢复原样。但是回来以后，发现即使我排布好桌面图标了，一旦重启又会恢复到在老家时的乱序。无论我把哪个屏幕设置为主屏幕，还是一样的乱序。</p>
-<h2 id="一、我的问题整理"><a href="#一、我的问题整理" class="headerlink" title="一、我的问题整理"></a>一、我的问题整理</h2><ol>
-<li><p>设备配置：笔记本+外接大屏，将大屏设为主显示器；</p>
-</li>
-<li><p>回老家一周，仅携带笔记本（未接大屏），所以期间每次开机，笔记本屏幕作为主屏，图标自然挤在一起、杂乱无章，我未做任何修改，糊弄几天算了；</p>
-</li>
-<li><p>回到家再接大屏，发现还是错乱的位置，整理好重启后图标依然固定乱在同一个错乱位置，无论重新排列多少次、重启多少次，都无法恢复，之前的正确布局完全失效。</p>
-</li>
-</ol>
-<h2 id="二、核心原因"><a href="#二、核心原因" class="headerlink" title="二、核心原因"></a>二、核心原因</h2><p>核心问题是：Windows系统会“记住”最新的桌面布局，而我回老家只用笔记本屏幕的一周，系统误将“杂乱的单屏布局”当成了最新、正确的布局，并且覆盖保存了之前我排好的“多屏正确布局”。</p>
-<p>简单说：系统被“单屏使用”误导，现在默认加载的是老家那套乱布局，哪怕接回大屏，也会优先读取这个错误记录，导致每次重启都乱。</p>
-<p>补充：之前尝试过常规设置（改主屏、关自动排列）没用，是因为没有彻底清除系统保存的“旧乱布局缓存”，系统始终在读取错误数据。</p>
-<h2 id="三、根治方案"><a href="#三、根治方案" class="headerlink" title="三、根治方案"></a>三、根治方案</h2><h3 id="第一步：基础设置"><a href="#第一步：基础设置" class="headerlink" title="第一步：基础设置"></a>第一步：基础设置</h3><ol>
-<li><p>先接好笔记本和外接大屏，确保两者正常显示；</p>
-</li>
-<li><p>右键桌面空白处，点击「显示设置」；</p>
-</li>
-<li><p>点击「识别」，确认大屏的编号，选中大屏，勾选「设为主显示器」；</p>
-</li>
-<li><p>拖动屏幕示意图，调整到和你实际摆放一致的位置（比如大屏在左、笔记本在右，或反之，按自己的使用习惯来）；</p>
-</li>
-<li><p>若为Win11系统，找到「根据显示器连接自动记住窗口位置」，点击关闭（避免系统自动重置布局）。</p>
-</li>
-</ol>
-<h3 id="第二步：关闭系统自动排列图标（防止强制重排）"><a href="#第二步：关闭系统自动排列图标（防止强制重排）" class="headerlink" title="第二步：关闭系统自动排列图标（防止强制重排）"></a>第二步：关闭系统自动排列图标（防止强制重排）</h3><ol>
-<li><p>右键桌面空白处，点击「查看」；</p>
-</li>
-<li><p>取消勾选两个选项：「自动排列图标」和「将图标与网格对齐」（两个都要关，否则系统会强制打乱你的布局）。</p>
-</li>
-</ol>
-<h3 id="第三步：清空错误布局缓存"><a href="#第三步：清空错误布局缓存" class="headerlink" title="第三步：清空错误布局缓存"></a>第三步：清空错误布局缓存</h3><p>这一步是清除系统保存的“老家乱布局”，彻底删掉错误记录：</p>
-<ol>
-<li><p>按键盘「Win + R」，弹出运行窗口，输入「regedit」，回车打开注册表；</p>
-</li>
-<li><p>在注册表左侧，依次定位到：HKEY_CURRENT_USER\Software\Microsoft\Windows\Shell；</p>
-</li>
-<li><p>找到两个文件夹：「Bags」和「BagMRU」（这两个就是保存桌面布局的缓存文件）；</p>
-</li>
-<li><p>分别右键这两个文件夹，点击「删除」（放心删，仅影响桌面图标布局，不影响其他文件和系统运行）。</p>
-</li>
-</ol>
-<h3 id="第四步：彻底清理图标缓存（辅助根治）"><a href="#第四步：彻底清理图标缓存（辅助根治）" class="headerlink" title="第四步：彻底清理图标缓存（辅助根治）"></a>第四步：彻底清理图标缓存（辅助根治）</h3><ol>
-<li>以「管理员身份」打开「命令提示符」：</li>
-</ol>
+})</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="mask-border"></div><!--.head--><!--  .head__inner--><!--    h1--><!--      a(href=theme.menu.Home) #{config.title}--><!--    p #{config.description}--><div class="head"><div class="head__inner"><h1><a href="/">Frieren <!-- 修改了这行的href --></a></h1><!-- 以下是新增的行，用于显示更多信息 --><p>May thy blade remain ever sharp</p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">AHK入门介绍</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">AHK入门介绍</a></h2><span class="post__date">2026-06-02</span><a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/"><span class="post__tags">#工具使用</span></a></div></div><div class="article__content"><h1 id="一、AHK-核心认知"><a href="#一、AHK-核心认知" class="headerlink" title="一、AHK 核心认知"></a>一、AHK 核心认知</h1><h2 id="1-1-什么是-AHK？"><a href="#1-1-什么是-AHK？" class="headerlink" title="1.1 什么是 AHK？"></a>1.1 什么是 AHK？</h2><p>AutoHotkey（简称AHK）是Windows免费开源自动化工具，核心作用：<strong>自定义键盘&#x2F;鼠标快捷键，替代所有重复手动操作</strong>。</p>
+<p>无需复杂编程，仅简单语法，即可实现：</p>
 <ul>
-<li>按「Win + X」，在弹出的菜单中，点击「Windows 终端（管理员）」或「命令提示符（管理员）」（有哪个点哪个）；</li>
+<li>一键填充固定文本（手机号、AI提示词、地址、话术）</li>
+<li>一键模拟系统按键（复制、粘贴、窗口切换）</li>
+<li>一键打开网页、文件夹、软件</li>
+<li>自定义闲置按键，解放常用操作</li>
 </ul>
-<ol start="2">
-<li>复制粘贴以下3行命令，一行一回车（执行后桌面会闪一下，属于正常现象）：</li>
+<h2 id="1-2-核心运行逻辑"><a href="#1-2-核心运行逻辑" class="headerlink" title="1.2 核心运行逻辑"></a>1.2 核心运行逻辑</h2><ul>
+<li>脚本文件后缀：<code>.ahk</code></li>
+<li>运行后后台常驻，右下角托盘显示<strong>绿色H图标</strong></li>
+<li>修改代码后必须 <strong>Reload This Script（重新加载）</strong> 才会生效</li>
+</ul>
+<hr>
+<h1 id="二、从零搭建-AHK-环境"><a href="#二、从零搭建-AHK-环境" class="headerlink" title="二、从零搭建 AHK 环境"></a>二、从零搭建 AHK 环境</h1><h2 id="2-1-前期准备"><a href="#2-1-前期准备" class="headerlink" title="2.1 前期准备"></a>2.1 前期准备</h2><p>已下载安装 AutoHotkey，默认安装即可，无需额外配置。</p>
+<h2 id="2-2-新建专属脚本文件"><a href="#2-2-新建专属脚本文件" class="headerlink" title="2.2 新建专属脚本文件"></a>2.2 新建专属脚本文件</h2><ol>
+<li>桌面空白处 <strong>右键 → 新建 → AutoHotkey Script</strong></li>
+<li>重命名为：<code>我的快捷工具.ahk</code>（后缀必须是.ahk，不可修改）</li>
+<li>右键脚本 → <strong>Edit Script（编辑脚本）</strong>，打开记事本编辑</li>
+<li><strong>删除所有系统默认代码</strong>，粘贴自定义代码</li>
+<li>Ctrl+S 保存，关闭记事本</li>
+<li>双击脚本运行，托盘出现绿色H即运行成功</li>
 </ol>
-<p>① taskkill &#x2F;f &#x2F;im explorer.exe</p>
-<p>② del &#x2F;f &#x2F;s &#x2F;q %localappdata%\Microsoft\Windows\Explorer\iconcache*</p>
-<p>③ start explorer.exe</p>
-<h3 id="第五步：重新排列-强制保存正确布局"><a href="#第五步：重新排列-强制保存正确布局" class="headerlink" title="第五步：重新排列+强制保存正确布局"></a>第五步：重新排列+强制保存正确布局</h3><ol>
-<li><p>回到桌面，手动将图标摆成你想要的样子（耐心摆，摆好后不要再动）；</p>
-</li>
-<li><p>摆好后，按「F5」刷新一次（或右键桌面→刷新），帮助系统确认当前图标位置；</p>
-</li>
-<li><p>直接重启电脑（重点：刷新后不要做任何操作，不要改设置、不拖拽图标，直接重启）。</p>
-</li>
+<h2 id="2-3-永久开机自启（必备）"><a href="#2-3-永久开机自启（必备）" class="headerlink" title="2.3 永久开机自启（必备）"></a>2.3 永久开机自启（必备）</h2><ol>
+<li>按下 <code>Win+R</code>，输入 <code>shell:startup</code> 回车</li>
+<li>打开开机启动文件夹</li>
+<li>将桌面的 <code>我的快捷工具.ahk</code> 复制粘贴到该文件夹</li>
 </ol>
-<h3 id="第六步：验证效果"><a href="#第六步：验证效果" class="headerlink" title="第六步：验证效果"></a>第六步：验证效果</h3><ol>
-<li><p>开机后，查看桌面图标，应该已经固定在你排好的位置；</p>
-</li>
-<li><p>再重启一次电脑，若图标依然不乱，说明彻底根治成功。</p>
-</li>
+<p>效果：后续开机自动后台运行脚本，无需手动打开。</p>
+<hr>
+<h1 id="三、AHK-核心基础语法"><a href="#三、AHK-核心基础语法" class="headerlink" title="三、AHK 核心基础语法"></a>三、AHK 核心基础语法</h1><h2 id="3-1-快捷键绑定固定格式"><a href="#3-1-快捷键绑定固定格式" class="headerlink" title="3.1 快捷键绑定固定格式"></a>3.1 快捷键绑定固定格式</h2><p>所有快捷键统一标准写法（规范、零报错、好维护）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">按键::<br>执行命令<br>return<br></code></pre></td></tr></table></figure>
+
+<p><strong>关键规则</strong>：</p>
+<ul>
+<li>多行命令：<strong>必须加 return</strong>，否则代码串行出错</li>
+<li>单行命令：可省略 return，但<strong>新手统一全部带return</strong>，规避bug</li>
+</ul>
+<h2 id="3-2-AHK-专属符号对应表"><a href="#3-2-AHK-专属符号对应表" class="headerlink" title="3.2 AHK 专属符号对应表"></a>3.2 AHK 专属符号对应表</h2><ul>
+<li><code>^</code> &#x3D; Ctrl 键</li>
+<li><code>!</code> &#x3D; Alt 键</li>
+<li><code>+</code> &#x3D; Shift 键</li>
+<li><code>#</code> &#x3D; Win 键</li>
+</ul>
+<h2 id="3-3-常用按键代码对照"><a href="#3-3-常用按键代码对照" class="headerlink" title="3.3 常用按键代码对照"></a>3.3 常用按键代码对照</h2><ul>
+<li>F1-F12：直接写 <code>F1::F12::</code></li>
+<li>小键盘数字：<code>Numpad1-Numpad9</code></li>
+<li>鼠标侧键：<code>XButton1</code>（前进）、<code>XButton2</code>（后退）</li>
+</ul>
+<hr>
+<h1 id="四、四大核心指令"><a href="#四、四大核心指令" class="headerlink" title="四、四大核心指令"></a>四、四大核心指令</h1><p>AHK指令成千上万，仅需掌握以下4类，满足99%日常需求</p>
+<h2 id="4-1-SendInput-指令（文本填充专用）"><a href="#4-1-SendInput-指令（文本填充专用）" class="headerlink" title="4.1 SendInput 指令（文本填充专用）"></a>4.1 SendInput 指令（文本填充专用）</h2><p><strong>作用</strong>：向输入框填充自定义文字（手机号、提示词、话术、网址）</p>
+<p><strong>使用前提</strong>：必须鼠标点击输入框，光标激活生效</p>
+<p><strong>优势</strong>：不乱码、不冲突、输入稳定</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">; 示例：一键填充手机号<br>F1::<br>SendInput &#123;Text&#125;13800138000<br>return<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-2-Run-指令"><a href="#4-2-Run-指令" class="headerlink" title="4.2 Run 指令"></a>4.2 Run 指令</h2><p><strong>作用</strong>：无需输入框，<strong>直接执行跳转&#x2F;打开</strong></p>
+<p><strong>可打开内容</strong>：网页链接、本地文件夹、软件、系统工具</p>
+<p><strong>和SendInput核心区别</strong>：Send是“填文字”，Run是“跑程序&#x2F;开页面”</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">; 打开文件夹<br>F7::<br>Run C:\Download<br>return<br><br>; 打开指定网页<br>Numpad1::<br>Run https://xxxxx<br>return<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-3-Send-指令"><a href="#4-3-Send-指令" class="headerlink" title="4.3 Send 指令"></a>4.3 Send 指令</h2><p><strong>作用</strong>：模拟键盘组合键（复制、粘贴、切换窗口等系统操作）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">; F7=复制 Ctrl+C<br>F7::<br>Send ^c<br>return<br><br>; F8=粘贴 Ctrl+V<br>F8::<br>Send ^v<br>return<br><br>; F9=窗口切换 Alt+Tab<br>F9::<br>Send !&#123;Tab&#125;<br>return<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-4-ToolTip-指令"><a href="#4-4-ToolTip-指令" class="headerlink" title="4.4 ToolTip 指令"></a>4.4 ToolTip 指令</h2><p><strong>作用</strong>：按键后屏幕弹出短暂提示，确认操作成功</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">F10::<br>ToolTip 操作成功！<br>SetTimer, ToolTip, -1000 ; 1秒后自动消失<br>return<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="五、按键取舍指南"><a href="#五、按键取舍指南" class="headerlink" title="五、按键取舍指南"></a>五、按键取舍指南</h1><h2 id="5-1-绝对不要修改的按键"><a href="#5-1-绝对不要修改的按键" class="headerlink" title="5.1 绝对不要修改的按键"></a>5.1 绝对不要修改的按键</h2><ul>
+<li>单字母 a-z、数字0-9（打字必备）</li>
+<li>Ctrl+C&#x2F;V&#x2F;Z&#x2F;S&#x2F;A（复制、粘贴、撤销、保存、全选）</li>
+<li>回车、空格、Tab、Shift、Win基础组合键</li>
+</ul>
+<h2 id="5-2-最优闲置按键"><a href="#5-2-最优闲置按键" class="headerlink" title="5.2 最优闲置按键"></a>5.2 最优闲置按键</h2><p><strong>首选：F7 F8 F9 F10</strong>（系统默认功能极少，几乎零冲突）</p>
+<p><strong>次选：Alt+1~Alt+9</strong>（手感极佳，无系统占用）</p>
+<p><strong>备选：小键盘全部按键</strong>（纯闲置，适合批量快捷指令）</p>
+<hr>
+<h1 id="六、超高价值拓展：可一键填充的所有场景"><a href="#六、超高价值拓展：可一键填充的所有场景" class="headerlink" title="六、超高价值拓展：可一键填充的所有场景"></a>六、超高价值拓展：可一键填充的所有场景</h1><p>整理所有适配AHK的自定义填充内容，直接复用即可</p>
+<h2 id="6-1-个人信息类"><a href="#6-1-个人信息类" class="headerlink" title="6.1 个人信息类"></a>6.1 个人信息类</h2><p>手机号、邮箱、姓名、收货地址、邮编，告别手动输入</p>
+<h2 id="6-2-AI提示词类"><a href="#6-2-AI提示词类" class="headerlink" title="6.2 AI提示词类"></a>6.2 AI提示词类</h2><p>一键填充：翻译、详细解释、总结、润色、分点解答、代码排错</p>
+<h2 id="6-3-办公话术类"><a href="#6-3-办公话术类" class="headerlink" title="6.3 办公话术类"></a>6.3 办公话术类</h2><p>工作回复、请假、汇报、邮件首尾固定话术</p>
+<h2 id="6-4-资源快速打开类"><a href="#6-4-资源快速打开类" class="headerlink" title="6.4 资源快速打开类"></a>6.4 资源快速打开类</h2><p>常用网页、本地文件夹、工作目录、学习网站（新概念英语网站等）</p>
+<h2 id="6-5-快捷操作类"><a href="#6-5-快捷操作类" class="headerlink" title="6.5 快捷操作类"></a>6.5 快捷操作类</h2><p>一键复制、一键粘贴、一键切换窗口，替代鼠标操作</p>
+<hr>
+<h1 id="七、成品脚本案例"><a href="#七、成品脚本案例" class="headerlink" title="七、成品脚本案例"></a>七、成品脚本案例</h1><p>整合你所有需求，可直接复制替换全部代码，修改个人信息即可使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs Plain">; ========== 个人信息一键填充 ==========<br>; F1 填充手机号<br>F1::<br>SendInput &#123;Text&#125;13800138000<br>return<br><br>; ========== 系统快捷按键映射 ==========<br>; F7 = Ctrl+C 复制<br>F7::<br>Send ^c<br>return<br><br>; F8 = Ctrl+V 粘贴<br>F8::<br>Send ^v<br>return<br><br>; F9 = Alt+Tab 切换窗口<br>F9::<br>Send !&#123;Tab&#125;<br>return<br><br>; ========== 快速打开资源 ==========<br>; F7 打开本地下载文件夹<br>F7::<br>Run C:\Download<br>return<br><br>; 小键盘1 打开网站<br>Numpad1::<br>Run https://XXXXXXX<br>return<br><br>; ========== AI常用提示词（可自定义修改） ==========<br>; Alt+2 翻译指令<br>!2::<br>SendInput &#123;Text&#125;请帮我精准翻译这段内容<br>return<br><br>; Alt+3 详细解释指令<br>!3::<br>SendInput &#123;Text&#125;请通俗易懂地详细解释这段内容<br>return<br><br>; Alt+4 总结精简指令<br>!4::<br>SendInput &#123;Text&#125;请精简提炼核心内容，整理成清晰笔记<br>return<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="八、常见问题排查"><a href="#八、常见问题排查" class="headerlink" title="八、常见问题排查"></a>八、常见问题排查</h1><h2 id="8-1-按键没反应"><a href="#8-1-按键没反应" class="headerlink" title="8.1 按键没反应"></a>8.1 按键没反应</h2><ul>
+<li>右键托盘绿色H图标 → <strong>Reload This Script</strong> 重新加载</li>
+<li>检查小键盘NumLock是否亮起（小键盘按键专用）</li>
+<li>检查代码是否缺少return、标点错误</li>
+</ul>
+<h2 id="8-2-文本乱码"><a href="#8-2-文本乱码" class="headerlink" title="8.2 文本乱码"></a>8.2 文本乱码</h2><p>固定使用 <code>SendInput {Text}内容</code> 格式，杜绝乱码</p>
+<h2 id="8-3-功能混淆问题"><a href="#8-3-功能混淆问题" class="headerlink" title="8.3 功能混淆问题"></a>8.3 功能混淆问题</h2><ul>
+<li>需要<strong>填文字</strong> → 用 SendInput</li>
+<li>需要<strong>打开&#x2F;跳转</strong> → 用 Run</li>
+<li>需要<strong>模拟按键</strong> → 用 Send</li>
+</ul>
+<h2 id="8-4-关闭-暂停脚本"><a href="#8-4-关闭-暂停脚本" class="headerlink" title="8.4 关闭&#x2F;暂停脚本"></a>8.4 关闭&#x2F;暂停脚本</h2><ul>
+<li>临时暂停：托盘H右键 → Suspend Hotkeys</li>
+<li>彻底关闭：托盘H右键 → Exit</li>
+</ul>
+<hr>
+<h1 id="九、进阶拓展方向"><a href="#九、进阶拓展方向" class="headerlink" title="九、进阶拓展方向"></a>九、进阶拓展方向</h1><ol>
+<li>新增更多AI提示词、办公话术、个人模板</li>
+<li>设置鼠标侧键快捷操作，解放键盘</li>
+<li>添加Tooltip悬浮提示，操作可视化</li>
+<li>配置窗口置顶、最小化、定时提醒等实用功能</li>
 </ol>
-<h2 id="四、常见疑问"><a href="#四、常见疑问" class="headerlink" title="四、常见疑问"></a>四、常见疑问</h2><h3 id="疑问1：“排好后不要动、不要点取消”是什么意思？"><a href="#疑问1：“排好后不要动、不要点取消”是什么意思？" class="headerlink" title="疑问1：“排好后不要动、不要点取消”是什么意思？"></a>疑问1：“排好后不要动、不要点取消”是什么意思？</h3><p>答：不是有“取消”按钮，而是摆好图标后，不要再拖拽任何图标、不要右键点「查看」、不要改分辨率&#x2F;缩放，也不要勾选之前关掉的“自动排列”，避免系统撤销当前布局，摆好后直接刷新、重启即可。</p>
-<h3 id="疑问2：排列好后，能刷新吗？"><a href="#疑问2：排列好后，能刷新吗？" class="headerlink" title="疑问2：排列好后，能刷新吗？"></a>疑问2：排列好后，能刷新吗？</h3><p>答：可以刷新，而且建议刷新！按F5或右键刷新，不会破坏你排好的布局，反而能让系统更稳定地记住当前图标位置，放心操作。</p>
-<h3 id="疑问3：为什么之前改主屏、关自动排列没用？"><a href="#疑问3：为什么之前改主屏、关自动排列没用？" class="headerlink" title="疑问3：为什么之前改主屏、关自动排列没用？"></a>疑问3：为什么之前改主屏、关自动排列没用？</h3><p>答：因为没有删除注册表中的「Bags」和「BagMRU」文件夹，系统始终在读取我在老家那套乱布局，相当于“旧错误记录没删，新布局存不进去”，第三步是关键，一定要删干净。</p>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>多屏扩展后桌面图标重启错乱，尤其是中途用过单屏、导致系统保存错误布局的情况，核心原因是系统把错误的排布当做正确的排布记下来了。</p>
-</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a target="_blank" rel="noopener" href="https://github.com/McQueen979">Github</a></li><li><a target="_blank" rel="noopener" href="https://space.bilibili.com/308641611">Bilibili</a></li><li><a href="mailto:momentary4ever@163.com">Mail</a></li></ul></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/">生活感悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag">工具使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%A8%E5%88%BB/" rel="tag">木刻</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/2026/06/02/AHK/">AHK入门介绍</a><a class="next-button" href="/2026/04/03/MuscleWiki%20%E5%81%A5%E8%BA%AB%E7%99%BE%E7%A7%91/">MuscleWiki 健身百科</a></div></div></div></div><div class="footer"><span>©️2019-2026 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div><h2>Links</h2><div class="sidebar__link"><ul><li><a target="_blank" rel="noopener" href="https://github.com/McQueen979">Github</a></li><li><a target="_blank" rel="noopener" href="https://space.bilibili.com/308641611">Bilibili</a></li><li><a href="mailto:momentary4ever@163.com">Mail</a></li></ul></div><h2>Archives</h2><div class="sidebar__archives"><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a></li></ul></div><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/">生活感悟</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag">工具使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%A8%E5%88%BB/" rel="tag">木刻</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%AB%99/" rel="tag">网站</a></li></ul></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/2026/06/04/HEXO%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4%E6%8C%87%E5%8D%97/">HEXO 博客维护指南</a><a class="next-button" href="/2026/04/04/%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87%E6%80%BB%E4%B9%B1%E6%8E%92/">桌面图标总乱排</a></div></div></div></div><div class="footer"><span>©️2019-2026 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
